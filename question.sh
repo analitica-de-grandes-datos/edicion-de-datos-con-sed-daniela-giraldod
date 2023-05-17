@@ -43,13 +43,18 @@
 #
 
 
-
+# Cambiar el formato de las fechas
 sed 's/\([0-9][0-9]\)/\([0-9][0-9]\)/\([0-9][0-9]\)/20\3-\2-\1/g' | 's/\([0-9]\)\/\([0-9]\)\/\([0-9][0-9]\)/\3-0\2-0\1/g'
+
+# Puntoycomas por comas y comas por puntos
 sed 's/,/./g';
      's/;/,/g'
+# Comas consecutivas
 sed 's/,,/,\N,/g ' 
-sed  's/,N/,\\N/g'
-sed  's/.*,$/&\\N/g'   data.csv > output.csv
+sed  's/,N/,\\N/g';
+     's/.*/\U&/g'; 
+sed  's/.*,$/&\\N/g';
+      's/\\N,\\N,/\\N,\\N,\\N/' data.csv > output.csv
 
 
 
